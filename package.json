@@ -1,6 +1,6 @@
 
 {
-  "name": "ab-contract-structured",
+  "name": "ab-contract-step-flow",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
