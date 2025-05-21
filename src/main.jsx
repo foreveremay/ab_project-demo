@@ -1,10 +1,10 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import ContractInterfacePreview from "./ContractInterfacePreview";
+import ContractTemplateLayout from "./ContractTemplateLayout";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ContractInterfacePreview />
+    <ContractTemplateLayout />
   </React.StrictMode>
 );

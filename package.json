@@ -1,6 +1,6 @@
 
 {
-  "name": "ab-contract-preview-ui",
+  "name": "ab-contract-structured",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
