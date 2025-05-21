@@ -1,10 +1,4 @@
-// AB 合約工具（加上 PDF / Word 匯出預覽 + Excel / Word / PDF 匯入）
-
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import jsPDF from "jspdf";
 import { saveAs } from "file-saver";
 
@@ -72,18 +66,36 @@ export default function ContractEditor() {
     saveAs(blob, "contract.doc");
   };
 
-  const importHandler = (e) => {
-    const f = e.target.files[0];
-    if (!f) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const content = ev.target.result;
-      alert("🗂️ 匯入內容預覽：\n" + content.slice(0, 500)); // 模擬展示
-    };
-    reader.readAsText(f);
-  };
-
   return (
-    <div>AB 合約工具</div>
+    <div style={{ padding: 20 }}>
+      <h2>AB 合約工具</h2>
+      <div>
+        <input placeholder="合約標題" value={aData.title} onChange={(e) => updateAData("title", e.target.value)} /><br />
+        <input placeholder="甲方名稱" value={aData.partyA} onChange={(e) => updateAData("partyA", e.target.value)} /><br />
+        <input placeholder="乙方名稱" value={aData.partyB} onChange={(e) => updateAData("partyB", e.target.value)} /><br />
+        <textarea placeholder="引言" value={aData.intro} onChange={(e) => updateAData("intro", e.target.value)} /><br />
+        <input placeholder="付款方式" value={aData.payment} onChange={(e) => updateAData("payment", e.target.value)} /><br />
+        <input type="date" value={aData.date} onChange={(e) => updateAData("date", e.target.value)} /><br />
+        <textarea placeholder="法律條款" value={aData.legal} onChange={(e) => updateAData("legal", e.target.value)} /><br />
+        <input placeholder="甲乙方用印" value={aData.seal} onChange={(e) => updateAData("seal", e.target.value)} /><br />
+        <input type="date" value={aData.contractDate} onChange={(e) => updateAData("contractDate", e.target.value)} /><br />
+        <br />
+        <div>
+          <h4>合約項目</h4>
+          {items.map((item, i) => (
+            <div key={i}>
+              <textarea placeholder="項目內容" value={item.description} onChange={(e) => updateItem(i, "description", e.target.value)} />
+              <input placeholder="總金額" value={item.total} onChange={(e) => updateItem(i, "total", e.target.value)} />
+              <input placeholder="A 金額" value={item.partA} onChange={(e) => updateItem(i, "partA", e.target.value)} />
+              <input placeholder="B 金額" value={item.partB} onChange={(e) => updateItem(i, "partB", e.target.value)} />
+            </div>
+          ))}
+          <button onClick={addItem}>新增項目</button>
+        </div>
+        <br />
+        <button onClick={exportPDF}>匯出 PDF</button>
+        <button onClick={exportDOC}>匯出 Word</button>
+      </div>
+    </div>
   );
 }
