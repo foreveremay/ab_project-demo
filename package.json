@@ -1,6 +1,6 @@
 
 {
-  "name": "ab-contract-final-ui",
+  "name": "ab-contract-wordlike-ui",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
